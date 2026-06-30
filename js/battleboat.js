@@ -8,7 +8,7 @@
     );
     client.initializeAsync();
   }
-	const showNewBg = client.checkGate("bg-color-change");
+	const showNewBg = client.checkGate("background_color_change");
 if (showNewBg) {
   document.body.style.backgroundColor = "#1a1a2e";
 } else {
