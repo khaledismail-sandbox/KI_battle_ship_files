@@ -21,45 +21,8 @@
 
 	<link href="css/styles.css"  rel="stylesheet" media="all"/>
 	
-	<!-- Statsig JS Client SDK (core + web analytics autocapture + session replay) -->
-	<script src="https://cdn.jsdelivr.net/npm/@statsig/js-client@3/build/statsig-js-client+session-replay+web-analytics.min.js" crossorigin="anonymous"></script>
-	<script>
-		(function () {
-			var STATSIG_CLIENT_KEY = "client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47";
-
-			// Persist a stable, non-email user id (user_<uuid>) across sessions.
-			var userID = localStorage.getItem("statsig_user_id");
-			if (!userID) {
-				var uuid = (window.crypto && crypto.randomUUID)
-					? crypto.randomUUID()
-					: "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-						var r = (Math.random() * 16) | 0;
-						return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
-					});
-				userID = "user_" + uuid;
-				localStorage.setItem("statsig_user_id", userID);
-			}
-
-			var gamesStarted = parseInt(localStorage.getItem("games_started") || "0", 10);
-
-			var Statsig = window.Statsig;
-			var client = new Statsig.StatsigClient(
-				STATSIG_CLIENT_KEY,
-				{ userID: userID, custom: { games_started: gamesStarted } },
-				{ plugins: [
-					new Statsig.StatsigAutoCapturePlugin(),
-					new Statsig.StatsigSessionReplayPlugin()
-				] }
-			);
-			client.initializeAsync().catch(function (err) {
-				console.error("Statsig initialization failed", err);
-			});
-
-			// Exposed for the game code in js/battleboat.js
-			window.statsigClient = client;
-			window.statsigUserID = userID;
-		})();
-	</script>
+	<!-- Statsig JS Client SDK -->
+	<script src="https://cdn.jsdelivr.net/npm/@statsig/js-client@3/build/statsig-js-client+session-replay+web-analytics.min.js?apikey=client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47" crossorigin="anonymous"></script>
 
 </head>
 <body>
