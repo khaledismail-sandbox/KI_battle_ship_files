@@ -13,7 +13,7 @@
 	  await client.initializeAsync();  // wait before evaluating
 	  return client;
 	}
-	const client = await initStatsig();
+	//const client = await initStatsig();
 	// const showNewBg = client.checkGate("bg-color-change");
 	// if (showNewBg) {
  //  	document.body.style.backgroundColor = "#1a1a2e";
