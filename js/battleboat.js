@@ -17,7 +17,7 @@
 	const client = await initStatsig();
 	const showNewBg = client.checkGate('background_color_change');
 	if (showNewBg) {
-  	document.body.style.backgroundColor = "red";
+  	document.body.style.backgroundColor = "#1a1a2e";
 	} else {
   	document.body.style.backgroundColor = "#ffffff";
 	}
