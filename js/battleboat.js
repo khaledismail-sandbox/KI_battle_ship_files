@@ -8,6 +8,12 @@
     );
     client.initializeAsync();
   }
+	const showNewBg = client.checkGate("bg-color-change");
+if (showNewBg) {
+  document.body.style.backgroundColor = "#1a1a2e";
+} else {
+  document.body.style.backgroundColor = "#ffffff";
+}
 
   // Battleboat
   // Bill Mei, 2014
