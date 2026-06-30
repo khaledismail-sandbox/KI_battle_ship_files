@@ -1,8 +1,11 @@
 (function () {
-  //SE Bootcamp: Enter code to get device id and print it in the identifierTable table below this line
-  //get device id and print it in the identifierTable table
-
-  //SE Bootcamp: Enter code to get user id and print it in the identifierTable table below this line
+  // Statsig: initialize the SDK
+  const { StatsigClient } = window.Statsig;
+  const client = new StatsigClient(
+    'client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47',
+    { userID: 'a-user' }
+  );
+  client.initializeAsync();
 
   // Battleboat
   // Bill Mei, 2014
@@ -197,7 +200,7 @@
     this.createGrid();
     this.init();
 
-    window.Statsig.firstInstance.logEvent('Game Initialized');
+    client.logEvent('Game Initialized');
   }
   Game.size = 10; // Default grid size is 10x10
   Game.gameOver = false;
@@ -307,7 +310,7 @@
       .getElementById(Game.placeShipType)
       .setAttribute("class", "placing");
 
-    window.Statsig.firstInstance.logEvent('Ship Selected', Game.placeShipType);
+    client.logEvent('Ship Selected', Game.placeShipType);
 
     Game.placeShipDirection = parseInt(
       document.getElementById("rotate-button").getAttribute("data-direction"),
@@ -430,11 +433,11 @@
     if (direction === Ship.DIRECTION_VERTICAL) {
       e.target.setAttribute("data-direction", "1");
       Game.placeShipDirection = Ship.DIRECTION_HORIZONTAL;
-      window.Statsig.firstInstance.logEvent('Ship Rotated', 'horizontal');
+      client.logEvent('Ship Rotated', 'horizontal');
     } else if (direction === Ship.DIRECTION_HORIZONTAL) {
       e.target.setAttribute("data-direction", "0");
       Game.placeShipDirection = Ship.DIRECTION_VERTICAL;
-      window.Statsig.firstInstance.logEvent('Ship Rotated', 'vertical');
+      client.logEvent('Ship Rotated', 'vertical');
     }
   };
   // Click handler for the Start Game button
@@ -448,7 +451,7 @@
     el.setAttribute("class", "invisible");
     self.readyToPlay = true;
 
-    window.Statsig.firstInstance.logEvent('Game Started');
+    client.logEvent('Game Started');
 
     // Advanced the tutorial step
     if (gameTutorial.currentStep === 3) {
