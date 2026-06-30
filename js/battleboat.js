@@ -8,7 +8,7 @@
   //await client.initializeAsync();
 	
 	async function initStatsig() {
-	  const client = new StatsigClient('client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47', {
+	  const client = new StatsigClient("client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47", {
 	    userID: "user-123"  // required
 	  });
 	  await client.initializeAsync();  // wait before evaluating
