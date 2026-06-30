@@ -1,3 +1,18 @@
+const { StatsigClient, runStatsigAutoCapture, runStatsigSessionReplay } = window.Statsig;
+    
+const client = new StatsigClient(
+    'client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47', 
+    { userID: 'a-user' }
+);
+
+runStatsigSessionReplay(client);
+runStatsigAutoCapture(client);
+
+await client.initializeAsync();
+
+// check gates, configs, experiments, or log events
+
+
 (function () {
   //SE Bootcamp: Enter code to get device id and print it in the identifierTable table below this line
   //get device id and print it in the identifierTable table
