@@ -1,18 +1,18 @@
 (function () {
-  // Statsig: initialize the SDK
-  // const { StatsigClient } = window.Statsig;
-  // const client = new StatsigClient(
-  //   'client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47',
-  //   { userID: 'a-user' }
-  // );
-  // await client.initializeAsync();
-	async function initStatsig() {
-	  const client = new StatsigClient('client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47', {
-	    userID: "user-123"  // required
-	  });
-	  await client.initializeAsync();  // wait before evaluating
-	  return client;
-	}
+  Statsig: initialize the SDK
+  const { StatsigClient } = window.Statsig;
+  const client = new StatsigClient(
+    'client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47',
+    { userID: 'a-user' }
+  );
+  //await client.initializeAsync();
+	// async function initStatsig() {
+	//   const client = new StatsigClient('client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47', {
+	//     userID: "user-123"  // required
+	//   });
+	//   await client.initializeAsync();  // wait before evaluating
+	//   return client;
+	// }
 	//const client = await initStatsig();
 	// const showNewBg = client.checkGate("bg-color-change");
 	// if (showNewBg) {
