@@ -1,11 +1,13 @@
 (function () {
   // Statsig: initialize the SDK
-  const { StatsigClient } = window.Statsig;
-  const client = new StatsigClient(
-    'client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47',
-    { userID: 'a-user' }
-  );
-  client.initializeAsync();
+  var client = {logEvent: function(){}};
+  if (window.Statsig) {
+    client = new window.Statsig.StatsigClient(
+      'client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47',
+      { userID: 'a-user' }
+    );
+    client.initializeAsync();
+  }
 
   // Battleboat
   // Bill Mei, 2014
