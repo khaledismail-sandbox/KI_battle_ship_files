@@ -1,18 +1,8 @@
 (function () {
-  // Statsig: get the device id (stableID) and user id and print them in the identifierTable.
-  if (window.statsigClient) {
-    var statsigContext = window.statsigClient.getContext();
-    var deviceCell = document.querySelector(".myDeviceId");
-    if (deviceCell) {
-      deviceCell.textContent = statsigContext.stableID;
-    }
-    var userCell = document.querySelector(".myUserId");
-    if (userCell) {
-      userCell.textContent =
-        (statsigContext.user && statsigContext.user.userID) ||
-        window.statsigUserID;
-    }
-  }
+  //SE Bootcamp: Enter code to get device id and print it in the identifierTable table below this line
+  //get device id and print it in the identifierTable table
+
+  //SE Bootcamp: Enter code to get user id and print it in the identifierTable table below this line
 
   // Battleboat
   // Bill Mei, 2014
@@ -207,10 +197,7 @@
     this.createGrid();
     this.init();
 
-    // Statsig: instrument the "Game Initialized" event.
-    if (window.statsigClient) {
-      window.statsigClient.logEvent({ eventName: "Game Initialized" });
-    }
+    window.Statsig.firstInstance.logEvent('Game Initialized');
   }
   Game.size = 10; // Default grid size is 10x10
   Game.gameOver = false;
@@ -320,14 +307,7 @@
       .getElementById(Game.placeShipType)
       .setAttribute("class", "placing");
 
-    // Statsig: instrument the "Ship Selected" event with the "ShipType" property.
-    if (window.statsigClient) {
-      window.statsigClient.logEvent({
-        eventName: "Ship Selected",
-        value: Game.placeShipType,
-        metadata: { ShipType: Game.placeShipType },
-      });
-    }
+    window.Statsig.firstInstance.logEvent('Ship Selected', Game.placeShipType);
 
     Game.placeShipDirection = parseInt(
       document.getElementById("rotate-button").getAttribute("data-direction"),
@@ -450,25 +430,11 @@
     if (direction === Ship.DIRECTION_VERTICAL) {
       e.target.setAttribute("data-direction", "1");
       Game.placeShipDirection = Ship.DIRECTION_HORIZONTAL;
-      // Statsig: instrument the "Ship Rotated" event with the "direction" property.
-      if (window.statsigClient) {
-        window.statsigClient.logEvent({
-          eventName: "Ship Rotated",
-          value: "horizontal",
-          metadata: { direction: "horizontal" },
-        });
-      }
+      window.Statsig.firstInstance.logEvent('Ship Rotated', 'horizontal');
     } else if (direction === Ship.DIRECTION_HORIZONTAL) {
       e.target.setAttribute("data-direction", "0");
       Game.placeShipDirection = Ship.DIRECTION_VERTICAL;
-      // Statsig: instrument the "Ship Rotated" event with the "direction" property.
-      if (window.statsigClient) {
-        window.statsigClient.logEvent({
-          eventName: "Ship Rotated",
-          value: "vertical",
-          metadata: { direction: "vertical" },
-        });
-      }
+      window.Statsig.firstInstance.logEvent('Ship Rotated', 'vertical');
     }
   };
   // Click handler for the Start Game button
@@ -482,22 +448,7 @@
     el.setAttribute("class", "invisible");
     self.readyToPlay = true;
 
-    // Statsig: increment the "games_started" user property and send a "Game Started" event.
-    if (window.statsigClient) {
-      var gamesStarted =
-        parseInt(localStorage.getItem("games_started") || "0", 10) + 1;
-      localStorage.setItem("games_started", String(gamesStarted));
-      // Update the Statsig user so the incremented property is attached to events.
-      window.statsigClient.updateUserAsync({
-        userID: window.statsigUserID,
-        custom: { games_started: gamesStarted },
-      });
-      window.statsigClient.logEvent({
-        eventName: "Game Started",
-        value: gamesStarted,
-        metadata: { games_started: gamesStarted },
-      });
-    }
+    window.Statsig.firstInstance.logEvent('Game Started');
 
     // Advanced the tutorial step
     if (gameTutorial.currentStep === 3) {
