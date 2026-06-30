@@ -5,7 +5,7 @@
     'client-s135N7Q1zaJeVD5MW4qpQA49UhobS02HvtPx7zVIX47',
     { userID: 'a-user' }
   );
-  client.initializeAsync();
+  await client.initializeAsync();
 
   // Battleboat
   // Bill Mei, 2014
